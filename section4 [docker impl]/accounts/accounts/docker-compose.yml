@@ -1,0 +1,39 @@
+services:
+    accounts:
+      image: "hriday0059/accounts:s4"
+      container_name: "accounts_ms"
+      ports:
+        - "8080:8080"
+      deploy:
+        resources:
+          limits:
+            memory: 700m
+      networks:
+        - eazybanks
+    loans:
+      image: "hriday0059/loans:s4"
+      container_name: "loans_ms"
+      ports:
+        - "8091:8091"
+      deploy:
+        resources:
+          limits:
+            memory: 700m
+      networks:
+        - eazybanks
+    cards:
+      image: "hriday0059/cards:s4"
+      container_name: "cards_ms"
+      ports:
+        - "9000:9000"
+      deploy:
+        resources:
+          limits:
+            memory: 700m
+      networks:
+        - eazybanks
+
+networks:
+  eazybanks:
+    #through the docker network bridgr all the 3 microservices can communicate with each other
+    driver: "bridge"
